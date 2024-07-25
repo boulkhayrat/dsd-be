@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: order-api
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+#    url: jdbc:sqlserver://localhost:60934;databaseName=Dsd_DB1;encrypt=true;trustServerCertificate=true
+    url: jdbc:postgresql://localhost:5432/Dsd_DB
+    username: postgres
+    password: 123456
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  resources:
+    static-locations: file:/src/main/resources/public/
+
+app:
+  jwt:
+    # Signing key for HS512 algorithm
+    # In http://www.allkeysgenerator.com/ you can generate all kinds of keys
+    secret: v9y$B&E)H@MbQeThWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp
+    expiration:
+      minutes: 10
+  cors:
+   allowed-origins: http://192.168.1.5:3000
+   #allowed-origins: http://localhost:3000
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+file:
+  upload-dir: /src/main/resources/public/
+server:
+  use-forward-headers: true
+  forward-headers-strategy: NATIVE
